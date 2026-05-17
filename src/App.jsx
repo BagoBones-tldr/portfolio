@@ -179,7 +179,7 @@ export default function App() {
     </div>
     <button className="btn btn-primary" type="submit">Send message</button>
   </form>
-   <form className="contact-form"<form className="contact-form" action="mailto:qedwards2790@gmail.com" method="POST" encType="text/plain">
+   <form className="contact-form" action="https://formspree.io/f/xwvzerbo" method="POST">
 </section>
 
       <footer>
