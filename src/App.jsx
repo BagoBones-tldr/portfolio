@@ -157,8 +157,7 @@ export default function App() {
 <section id="contact">
   <div className="section-label">contact</div>
   <div className="section-title">Get in touch</div>
-  <form className="contact-form" name="contact" method="POST" data-netlify="true">
-    <input type="hidden" name="form-name" value="contact" />
+  <form className="contact-form" action="https://formspree.io/f/xwvzerbo" method="POST">
     <div className="form-row">
       <div className="form-group">
         <label className="form-label">Name</label>
@@ -179,7 +178,6 @@ export default function App() {
     </div>
     <button className="btn btn-primary" type="submit">Send message</button>
   </form>
-   <form className="contact-form" action="https://formspree.io/f/xwvzerbo" method="POST" encType="application/x-www-form-urlencoded">
 </section>
 
       <footer>
