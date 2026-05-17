@@ -12,6 +12,7 @@ export default function App() {
           <li><a href="#skills">skills</a></li>
           <li><a href="#projects">projects</a></li>
           <li><a href="#experience">experience</a></li>
+	  <li><a href="#contact">contact</a></li>
         </ul>
       </nav>
 
@@ -151,6 +152,34 @@ export default function App() {
           ))}
         </div>
       </section>
+
+{/* CONTACT */}
+<section id="contact">
+  <div className="section-label">contact</div>
+  <div className="section-title">Get in touch</div>
+  <form className="contact-form" name="contact" method="POST" data-netlify="true">
+    <input type="hidden" name="form-name" value="contact" />
+    <div className="form-row">
+      <div className="form-group">
+        <label className="form-label">Name</label>
+        <input className="form-input" type="text" name="name" required />
+      </div>
+      <div className="form-group">
+        <label className="form-label">Email</label>
+        <input className="form-input" type="email" name="email" required />
+      </div>
+    </div>
+    <div className="form-group">
+      <label className="form-label">Subject</label>
+      <input className="form-input" type="text" name="subject" required />
+    </div>
+    <div className="form-group">
+      <label className="form-label">Message</label>
+      <textarea className="form-input form-textarea" name="message" rows="5" required />
+    </div>
+    <button className="btn btn-primary" type="submit">Send message</button>
+  </form>
+</section>
 
       <footer>
         <p>built by <span>stackzero</span> · stackzero.netlify.app</p>

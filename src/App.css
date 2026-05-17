@@ -84,6 +84,15 @@ h1 .dim { color: var(--muted); }
 .exp-role { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 0.25rem; color: var(--text); }
 .exp-company { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent2); }
 
+/* CONTACT */
+.contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+.form-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+.form-input { background: var(--bg2); border: 0.5px solid var(--border2); border-radius: 6px; padding: 0.75rem 1rem; color: var(--text); font-family: var(--font-mono); font-size: 0.85rem; outline: none; transition: border-color 0.2s; width: 100%; }
+.form-input:focus { border-color: var(--accent); }
+.form-textarea { resize: vertical; min-height: 120px; }
+
 /* FOOTER */
 footer { text-align: center; padding: 3rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); border-top: 0.5px solid var(--border2); position: relative; z-index: 1; }
 footer span { color: var(--accent); }
