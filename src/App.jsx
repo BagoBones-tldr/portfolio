@@ -1,20 +1,32 @@
-import './App.css'
+import{useState} from 'react'
 
 export default function App() {
-  return (
+  const [menuOpen, setMenuOpen] = useState(false)
     <>
       <div className="grid-bg" />
 
-      <nav>
-        <div className="nav-logo">stack<span>zero</span></div>
-        <ul className="nav-links">
-          <li><a href="#about">about</a></li>
-          <li><a href="#skills">skills</a></li>
-          <li><a href="#projects">projects</a></li>
-          <li><a href="#experience">experience</a></li>
-	  <li><a href="#contact">contact</a></li>
-        </ul>
-      </nav>
+        <nav>
+  	  <div className="nav-logo">stack<span>zero</span></div>
+  	  <ul className="nav-links">
+   	    <li><a href="#about">about</a></li>
+    	    <li><a href="#skills">skills</a></li>
+    	    <li><a href="#projects">projects</a></li>
+    	    <li><a href="#experience">experience</a></li>
+    	    <li><a href="#contact">contact</a></li>
+ 	  </ul>
+ 	  <button className={`hamburger ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(!menuOpen)}>
+    	    <div className="bar"></div>
+   	    <div className="bar"></div>
+  	    <div className="bar"></div>
+ 	  </button>
+	  <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
+   	    <a href="#about" onClick={() => setMenuOpen(false)}>about</a>
+    	    <a href="#skills" onClick={() => setMenuOpen(false)}>skills</a>
+      	    <a href="#projects" onClick={() => setMenuOpen(false)}>projects</a>
+   	    <a href="#experience" onClick={() => setMenuOpen(false)}>experience</a>
+   	    <a href="#contact" onClick={() => setMenuOpen(false)}>contact</a>
+  	 </div>
+       </nav>
 
       {/* HERO */}
       <section id="hero">
