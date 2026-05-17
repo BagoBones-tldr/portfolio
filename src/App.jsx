@@ -179,6 +179,7 @@ export default function App() {
     </div>
     <button className="btn btn-primary" type="submit">Send message</button>
   </form>
+   <form className="contact-form"<form className="contact-form" action="mailto:qedwards2790@gmail.com" method="POST" encType="text/plain">
 </section>
 
       <footer>
