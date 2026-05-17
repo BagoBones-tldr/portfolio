@@ -96,41 +96,47 @@ export default function App() {
       </section>
 
       {/* PROJECTS */}
-      <section id="projects">
-        <div className="section-label">projects</div>
-        <div className="section-title">What I've built</div>
-        <div className="projects-list">
-          {[
-            {
-              num: '01', name: 'KRONOS',
-              desc: 'A fully local, voice-first personal assistant. Delivers morning briefings, responds to Telegram commands, and fires pre-event alerts — running 24/7 on a Raspberry Pi.',
-              tags: ['Node.js', 'Anthropic SDK', 'Telegram Bot API', 'CalDAV', 'Raspberry Pi', 'launchd'],
-            },
-            {
-              num: '02', name: 'Home Lab',
-              desc: 'Designing and building a self-hosted physical infrastructure — Raspberry Pi cluster, NAS, and server rack. Research-driven, built incrementally with real hardware.',
-              tags: ['Raspberry Pi', 'Networking', 'Self-hosted', 'NAS'],
-            },
-            {
-              num: '03', name: 'Portfolio Site',
-              desc: 'This site. Built with React and Vite, deployed on Netlify. Dark modern aesthetic, fully responsive.',
-              tags: ['React', 'Vite', 'Netlify'],
-            },
-          ].map((p) => (
-            <div className="project-card" key={p.num}>
-              <div>
-                <div className="project-num">{p.num}</div>
-                <div className="project-name">{p.name}</div>
-                <div className="project-desc">{p.desc}</div>
-                <div className="project-tags">
-                  {p.tags.map(t => <span className="project-tag" key={t}>{t}</span>)}
-                </div>
-              </div>
-              <div className="project-arrow">↗</div>
-            </div>
-          ))}
+<section id="projects">
+  <div className="section-label">projects</div>
+  <div className="section-title">What I've built</div>
+  <div className="projects-list">
+    {[
+      {
+        num: '01', name: 'KRONOS',
+        desc: 'A fully local, voice-first personal assistant. Delivers morning briefings, responds to Telegram commands, and fires pre-event alerts — running 24/7 on a Raspberry Pi.',
+        tags: ['Node.js', 'Anthropic SDK', 'Telegram Bot API', 'CalDAV', 'Raspberry Pi', 'launchd'],
+        link: 'https://github.com/BagoBones-tldr/KRONOS',
+      },
+      {
+        num: '02', name: 'Home Lab',
+        desc: 'Designing and building a self-hosted physical infrastructure — Raspberry Pi cluster, NAS, and server rack. Research-driven, built incrementally with real hardware.',
+        tags: ['Raspberry Pi', 'Networking', 'Self-hosted', 'NAS'],
+        link: null,
+      },
+      {
+        num: '03', name: 'Portfolio Site',
+        desc: 'This site. Built with React and Vite, deployed on Netlify. Dark modern aesthetic, fully responsive.',
+        tags: ['React', 'Vite', 'Netlify'],
+        link: 'https://github.com/BagoBones-tldr/portfolio',
+      },
+    ].map((p) => (
+      <div className="project-card" key={p.num}>
+        <div>
+          <div className="project-num">{p.num}</div>
+          <div className="project-name">{p.name}</div>
+          <div className="project-desc">{p.desc}</div>
+          <div className="project-tags">
+            {p.tags.map(t => <span className="project-tag" key={t}>{t}</span>)}
+          </div>
         </div>
-      </section>
+        {p.link
+          ? <a href={p.link} target="_blank" rel="noreferrer" className="project-arrow">↗</a>
+          : <div className="project-arrow" style={{opacity: 0.2}}>↗</div>
+        }
+      </div>
+    ))}
+  </div>
+</section>
 
       {/* EXPERIENCE */}
       <section id="experience">
