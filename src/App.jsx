@@ -2,6 +2,7 @@ import{useState} from 'react'
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  return(  
     <>
       <div className="grid-bg" />
 
