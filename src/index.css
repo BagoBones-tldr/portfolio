@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0f;
+  --bg2: #111118;
+  --bg3: #1a1a24;
+  --accent: #7c6dfa;
+  --accent2: #a394ff;
+  --text: #e8e6f0;
+  --muted: #6b6880;
+  --border: rgba(124, 109, 250, 0.15);
+  --border2: rgba(255,255,255,0.06);
+  --font-display: 'Syne', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-display);
+  overflow-x: hidden;
+}
