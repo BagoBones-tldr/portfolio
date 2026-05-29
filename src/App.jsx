@@ -1,5 +1,6 @@
 import{useState} from 'react'
 import './App.css'
+import logo from './assets/logo.png'
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -8,7 +9,7 @@ export default function App() {
       <div className="grid-bg" />
 
         <nav>
-  	  <div className="nav-logo">stack<span>zero</span></div>
+  	  <img src={logo} alt="Portfolio" className="nav-logo-img" />
   	  <ul className="nav-links">
    	    <li><a href="#about">about</a></li>
     	    <li><a href="#skills">skills</a></li>

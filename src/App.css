@@ -3,12 +3,11 @@ nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
   padding: 1.25rem 3rem;
-  background: rgba(10,10,15,0.85);
+  background: rgba(25,18,16,0.92);
   backdrop-filter: blur(12px);
   border-bottom: 0.5px solid var(--border2);
 }
-.nav-logo { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.02em; color: var(--text); }
-.nav-logo span { color: var(--accent); }
+.nav-logo-img { height: 36px; width: auto; display: block; }
 .nav-links { display: flex; gap: 2rem; list-style: none; }
 .nav-links a { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s; }
 .nav-links a:hover { color: var(--accent2); }
@@ -16,7 +15,7 @@ nav {
 /* GRID BG */
 .grid-bg {
   position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background-image: linear-gradient(rgba(124,109,250,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(124,109,250,0.03) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(200,98,42,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(200,98,42,0.04) 1px, transparent 1px);
   background-size: 4rem 4rem;
 }
 
@@ -61,7 +60,7 @@ h1 .dim { color: var(--muted); }
 .skill-cat-title { font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
 .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .skill-tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); background: var(--bg3); border: 0.5px solid var(--border2); border-radius: 3px; padding: 0.25rem 0.6rem; }
-.skill-tag.wip { border-color: rgba(124,109,250,0.3); color: var(--accent2); }
+.skill-tag.wip { border-color: rgba(200,98,42,0.3); color: var(--accent2); }
 .wip-label { color: var(--accent); font-size: 0.65rem; }
 
 /* PROJECTS */
@@ -72,7 +71,7 @@ h1 .dim { color: var(--muted); }
 .project-name { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.5rem; color: var(--text); }
 .project-desc { font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
 .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
-.project-tag { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent2); background: rgba(124,109,250,0.08); border: 0.5px solid rgba(124,109,250,0.2); border-radius: 3px; padding: 0.2rem 0.5rem; }
+.project-tag { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent2); background: rgba(200,98,42,0.08); border: 0.5px solid rgba(200,98,42,0.2); border-radius: 3px; padding: 0.2rem 0.5rem; }
 .project-arrow { font-size: 1.2rem; color: var(--muted); transition: color 0.2s, transform 0.2s; margin-top: 0.25rem; }
 .project-card:hover .project-arrow { color: var(--accent2); transform: translate(3px,-3px); }
 
@@ -105,7 +104,7 @@ footer span { color: var(--accent); }
 .hamburger.open .bar:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--accent); }
 
 /* MOBILE MENU */
-.mobile-menu { display: none; position: absolute; top: 57px; left: 0; right: 0; background: rgba(10,10,15,0.98); backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--border2); padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+.mobile-menu { display: none; position: absolute; top: 57px; left: 0; right: 0; background: rgba(25,18,16,0.98); backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--border2); padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
 .mobile-menu.open { max-height: 300px; padding: 1rem 1.5rem; }
 .mobile-menu a { display: block; font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); text-decoration: none; padding: 0.75rem 0; border-bottom: 0.5px solid var(--border2); letter-spacing: 0.06em; transition: color 0.2s; }
 .mobile-menu a:last-child { border-bottom: none; }
