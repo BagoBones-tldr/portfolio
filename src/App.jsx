@@ -1,6 +1,5 @@
 import{useState} from 'react'
 import './App.css'
-import logo from './assets/logo.png'
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -9,7 +8,22 @@ export default function App() {
       <div className="grid-bg" />
 
         <nav>
-  	  <img src={logo} alt="Portfolio" className="nav-logo-img" />
+  	  <div className="nav-logo">
+  	    <svg viewBox="0 0 56 56" height="30" fill="none" style={{color:'var(--accent)'}}>
+  	      <g stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round">
+  	        <path d="M28 2 L53 15 L28 28 L3 15 Z" />
+  	        <path d="M3 15 L28 28 L28 54 L3 41 Z" />
+  	        <path d="M28 28 L53 15 L53 41 L28 54 Z" />
+  	        <line x1="9"  y1="18" x2="9"  y2="44" />
+  	        <line x1="15" y1="21" x2="15" y2="47" />
+  	        <line x1="21" y1="24" x2="21" y2="50" />
+  	        <line x1="35" y1="24" x2="35" y2="50" />
+  	        <line x1="42" y1="21" x2="42" y2="47" />
+  	        <line x1="49" y1="17" x2="49" y2="43" />
+  	      </g>
+  	    </svg>
+  	    <span>PORTFOLIO</span>
+  	  </div>
   	  <ul className="nav-links">
    	    <li><a href="#about">about</a></li>
     	    <li><a href="#skills">skills</a></li>
