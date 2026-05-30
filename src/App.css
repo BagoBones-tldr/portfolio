@@ -116,10 +116,32 @@ footer span { color: var(--accent); }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
+  /* NAV */
   .nav-links { display: none; }
   .hamburger { display: flex; }
   .mobile-menu { display: block; }
-  #hero { flex-direction: column; padding-left: 1.5rem; padding-right: 1.5rem; }
-  .hero-img-wrap { width: 100%; }
-  .hero-photo { height: 300px; }
+
+  /* HERO — switch from absolute to stacked flow */
+  #hero { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 6rem 1.5rem 3rem; gap: 2rem; position: static; }
+  .hero-content { position: static; width: 100%; transform: none; left: auto; top: auto; }
+  .hero-img-wrap { position: static; width: 100%; transform: none; left: auto; top: auto; }
+  .hero-photo { height: 320px; width: 100%; object-position: center 15%; }
+  h1 { font-size: 3.5rem; }
+  .hero-bio { font-size: 0.82rem; }
+
+  /* SECTIONS */
+  section { padding: 4rem 1.5rem; }
+
+  /* ABOUT */
+  .strengths-grid { grid-template-columns: 1fr; }
+
+  /* SKILLS */
+  .skills-grid { grid-template-columns: 1fr; }
+
+  /* EXPERIENCE */
+  .exp-item { grid-template-columns: 1fr; gap: 0.25rem; }
+  .exp-date { padding-top: 0; }
+
+  /* CONTACT */
+  .form-row { grid-template-columns: 1fr; }
 }
