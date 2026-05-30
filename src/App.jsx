@@ -1,5 +1,6 @@
-import{useState} from 'react'
+import { useState } from 'react'
 import './App.css'
+import mePhoto from './assets/me.jpeg'
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -47,15 +48,20 @@ export default function App() {
 
       {/* HERO */}
       <section id="hero">
-        <div className="hero-tag">available for work</div>
-        <h1>Self-taught<br /><span className="dim">developer &</span><br />builder.</h1>
-        <p className="hero-bio">
-          Based in Laramie, Wyoming. I build systems that actually do things — AI assistants,
-          self-hosted infrastructure, and tools that run 24/7. Currently working toward my CCNA.
-        </p>
-        <div className="hero-cta">
-          <a href="#projects" className="btn btn-primary">View projects</a>
-          <a href="#experience" className="btn btn-ghost">Experience</a>
+        <div className="hero-content">
+          <div className="hero-tag">available for work</div>
+          <h1>Self-taught<br /><span className="dim">developer &</span><br />builder.</h1>
+          <p className="hero-bio">
+            Based in Laramie, Wyoming. I build systems that actually do things — AI assistants,
+            self-hosted infrastructure, and tools that run 24/7. Currently working toward my CCNA.
+          </p>
+          <div className="hero-cta">
+            <a href="#projects" className="btn btn-primary">View projects</a>
+            <a href="#experience" className="btn btn-ghost">Experience</a>
+          </div>
+        </div>
+        <div className="hero-img-wrap">
+          <img src={mePhoto} alt="Quintin" className="hero-photo" />
         </div>
       </section>
 
