@@ -110,6 +110,81 @@ function StatusBadge() {
   )
 }
 
+const LAB_NODES = [
+  { cx: 115, color: '#3fb950', vlan: 'VLAN 10 · MGMT', title: 'Pi · mgmt', sub: 'control plane', subnet: '10.0.10.0/24', icon: 'chip' },
+  { cx: 315, color: '#a371f7', vlan: 'VLAN 20 · SERVICES', title: 'Server / mini-PC', sub: 'KRONOS · apps', subnet: '10.0.20.0/24', icon: 'server' },
+  { cx: 545, color: '#4493f8', vlan: 'VLAN 30 · STORAGE', title: 'NAS', sub: 'RAID · backups', subnet: '10.0.30.0/24', icon: 'nas' },
+  { cx: 745, color: '#c8622a', vlan: 'VLAN 40 · LAB', title: 'Pi cluster', sub: '×3 nodes', subnet: '10.0.40.0/24', icon: 'cluster' },
+]
+
+function LabIcon({ type, cx, cy, color }) {
+  const s = { stroke: color, fill: 'none', strokeWidth: 1.4, strokeLinejoin: 'round', strokeLinecap: 'round' }
+  if (type === 'chip') return (
+    <g {...s}>
+      <rect x={cx - 8} y={cy - 8} width="16" height="16" rx="2" />
+      <line x1={cx - 12} y1={cy - 4} x2={cx - 8} y2={cy - 4} /><line x1={cx - 12} y1={cy + 4} x2={cx - 8} y2={cy + 4} />
+      <line x1={cx + 8} y1={cy - 4} x2={cx + 12} y2={cy - 4} /><line x1={cx + 8} y1={cy + 4} x2={cx + 12} y2={cy + 4} />
+    </g>
+  )
+  if (type === 'server') return (
+    <g {...s}>
+      <rect x={cx - 11} y={cy - 9} width="22" height="8" rx="2" /><circle cx={cx + 6} cy={cy - 5} r="1.1" fill={color} stroke="none" />
+      <rect x={cx - 11} y={cy + 1} width="22" height="8" rx="2" /><circle cx={cx + 6} cy={cy + 5} r="1.1" fill={color} stroke="none" />
+    </g>
+  )
+  if (type === 'nas') return (
+    <g {...s}>
+      <rect x={cx - 10} y={cy - 9} width="20" height="18" rx="2" />
+      <line x1={cx - 6} y1={cy - 4} x2={cx + 6} y2={cy - 4} /><line x1={cx - 6} y1={cy} x2={cx + 6} y2={cy} /><line x1={cx - 6} y1={cy + 4} x2={cx + 6} y2={cy + 4} />
+    </g>
+  )
+  return (
+    <g {...s}>
+      <rect x={cx - 9} y={cy - 9} width="11" height="11" rx="2" />
+      <rect x={cx - 3} y={cy - 3} width="11" height="11" rx="2" />
+      <rect x={cx + 1} y={cy + 1} width="9" height="9" rx="2" opacity="0.6" />
+    </g>
+  )
+}
+
+function HomeLabDiagram() {
+  return (
+    <figure className="homelab-diagram">
+      <svg viewBox="0 0 860 450" role="img" aria-label="Planned home lab network topology">
+        <line x1="430" y1="58" x2="430" y2="88" stroke="var(--muted)" strokeOpacity="0.4" strokeWidth="1.5" />
+        <line x1="430" y1="138" x2="430" y2="170" stroke="var(--muted)" strokeOpacity="0.4" strokeWidth="1.5" />
+        {LAB_NODES.map(n => (
+          <line key={`l${n.cx}`} x1="430" y1="220" x2={n.cx} y2="272" stroke={n.color} strokeOpacity="0.35" strokeWidth="1.5" />
+        ))}
+
+        <rect x="345" y="24" width="170" height="34" rx="17" fill="none" stroke="var(--muted)" strokeOpacity="0.5" />
+        <text x="430" y="45" textAnchor="middle" className="d-cap" fill="var(--muted)">INTERNET / WAN</text>
+
+        <rect x="335" y="88" width="190" height="50" rx="8" fill="#c8622a" fillOpacity="0.08" stroke="#c8622a" strokeOpacity="0.6" />
+        <text x="430" y="109" textAnchor="middle" className="d-title" fill="#e8e6e3">Router / Firewall</text>
+        <text x="430" y="125" textAnchor="middle" className="d-sub" fill="var(--muted)">gw 192.168.1.1</text>
+
+        <rect x="320" y="170" width="220" height="50" rx="8" fill="#4493f8" fillOpacity="0.08" stroke="#4493f8" strokeOpacity="0.6" />
+        <text x="430" y="191" textAnchor="middle" className="d-title" fill="#e8e6e3">Managed Switch</text>
+        <text x="430" y="207" textAnchor="middle" className="d-sub" fill="var(--muted)">802.1Q trunk · inter-VLAN routing</text>
+
+        {LAB_NODES.map(n => (
+          <g key={n.cx}>
+            <rect x={n.cx - 78} y="272" width="156" height="30" rx="15" fill={n.color} fillOpacity="0.12" stroke={n.color} strokeOpacity="0.5" />
+            <text x={n.cx} y="291" textAnchor="middle" className="d-vlan" fill={n.color}>{n.vlan}</text>
+            <rect x={n.cx - 82} y="318" width="164" height="82" rx="8" fill={n.color} fillOpacity="0.06" stroke={n.color} strokeOpacity="0.45" />
+            <LabIcon type={n.icon} cx={n.cx} cy={338} color={n.color} />
+            <text x={n.cx} y="368" textAnchor="middle" className="d-title" fill="#e8e6e3">{n.title}</text>
+            <text x={n.cx} y="384" textAnchor="middle" className="d-sub" fill="var(--muted)">{n.sub}</text>
+            <text x={n.cx} y="420" textAnchor="middle" className="d-net" fill="var(--muted)">{n.subnet}</text>
+          </g>
+        ))}
+      </svg>
+      <figcaption>Planned topology · VLAN-segmented, built incrementally toward the CCNA.</figcaption>
+    </figure>
+  )
+}
+
 const navItems = ['about', 'skills', 'projects', 'experience', 'contact']
 
 export default function App() {
@@ -294,7 +369,7 @@ export default function App() {
         link: 'https://github.com/BagoBones-tldr/Calender_Bot',
       },
       {
-        num: '02', name: 'Home Lab',
+        num: '02', name: 'Home Lab', diagram: true,
         desc: 'Designing and building a self-hosted physical infrastructure: Raspberry Pi cluster, NAS, and server rack. Research-driven, built incrementally with real hardware.',
         tags: ['Raspberry Pi', 'Networking', 'Self-hosted', 'NAS'],
         link: null,
@@ -314,6 +389,7 @@ export default function App() {
           <div className="project-tags">
             {p.tags.map(t => <span className="project-tag" key={t}>{t}</span>)}
           </div>
+          {p.diagram && <HomeLabDiagram />}
         </div>
         {p.link
           ? <a href={p.link} target="_blank" rel="noreferrer" className="project-arrow">↗</a>
