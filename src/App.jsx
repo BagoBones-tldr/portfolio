@@ -52,8 +52,59 @@ function SocialLinks({ className = '' }) {
   )
 }
 
+function formatAgo(ms) {
+  if (ms == null) return ''
+  const s = Math.floor(ms / 1000)
+  if (s < 60) return 'just now'
+  const m = Math.floor(s / 60)
+  if (m < 60) return `${m}m ago`
+  const h = Math.floor(m / 60)
+  if (h < 24) return `${h}h ago`
+  return `${Math.floor(h / 24)}d ago`
+}
+
+const STATUS_LABEL = { online: 'online', working: 'working', offline: 'offline', unknown: 'status unknown' }
+
+function useKronosStatus() {
+  const [status, setStatus] = useState('unknown')
+  const [agoMs, setAgoMs] = useState(null)
+  useEffect(() => {
+    let active = true
+    const pull = async () => {
+      try {
+        const r = await fetch('/api/kronos-status')
+        const d = await r.json()
+        if (!active) return
+        setStatus(d.status || 'unknown')
+        setAgoMs(d.agoMs ?? null)
+      } catch {
+        if (active) setStatus('unknown')
+      }
+    }
+    pull()
+    const id = setInterval(pull, 20000)
+    return () => { active = false; clearInterval(id) }
+  }, [])
+  return { status, agoMs }
+}
+
+function StatusBadge() {
+  const { status, agoMs } = useKronosStatus()
+  const showAgo = status !== 'unknown' && agoMs != null
+  return (
+    <span className={`status-badge ${status}`} title={showAgo ? `last seen ${formatAgo(agoMs)}` : STATUS_LABEL[status]}>
+      <span className="status-dot" />
+      {STATUS_LABEL[status]}
+      {showAgo && <span className="status-ago"> · {formatAgo(agoMs)}</span>}
+    </span>
+  )
+}
+
+const navItems = ['about', 'skills', 'projects', 'experience', 'contact']
+
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -70,6 +121,23 @@ export default function App() {
     const targets = document.querySelectorAll('.reveal')
     targets.forEach((el) => observer.observe(el))
     return () => observer.disconnect()
+  }, [])
+
+  // Scrollspy: highlight the nav link for the section in view.
+  useEffect(() => {
+    const spy = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id)
+        })
+      },
+      { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
+    )
+    navItems.forEach((id) => {
+      const el = document.getElementById(id)
+      if (el) spy.observe(el)
+    })
+    return () => spy.disconnect()
   }, [])
 
   return(
@@ -94,11 +162,11 @@ export default function App() {
   	    <span>PORTFOLIO</span>
   	  </div>
   	  <ul className="nav-links">
-   	    <li><a href="#about">about</a></li>
-    	    <li><a href="#skills">skills</a></li>
-    	    <li><a href="#projects">projects</a></li>
-    	    <li><a href="#experience">experience</a></li>
-    	    <li><a href="#contact">contact</a></li>
+   	    {navItems.map((id) => (
+   	      <li key={id}>
+   	        <a href={`#${id}`} className={activeSection === id ? 'active' : ''}>{id}</a>
+   	      </li>
+   	    ))}
  	  </ul>
  	  <button className={`hamburger ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(!menuOpen)}>
     	    <div className="bar"></div>
@@ -106,18 +174,23 @@ export default function App() {
   	    <div className="bar"></div>
  	  </button>
 	  <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
-   	    <a href="#about" onClick={() => setMenuOpen(false)}>about</a>
-    	    <a href="#skills" onClick={() => setMenuOpen(false)}>skills</a>
-      	    <a href="#projects" onClick={() => setMenuOpen(false)}>projects</a>
-   	    <a href="#experience" onClick={() => setMenuOpen(false)}>experience</a>
-   	    <a href="#contact" onClick={() => setMenuOpen(false)}>contact</a>
+   	    {navItems.map((id) => (
+   	      <a
+   	        key={id}
+   	        href={`#${id}`}
+   	        className={activeSection === id ? 'active' : ''}
+   	        onClick={() => setMenuOpen(false)}
+   	      >
+   	        {id}
+   	      </a>
+   	    ))}
   	 </div>
        </nav>
 
       {/* HERO */}
       <section id="hero">
         <div className="hero-content">
-          <div className="hero-tag">available for work</div>
+          <div className="hero-tag">employed · open to opportunities</div>
           <h1>Self-taught<br /><span className="dim">developer &</span><br />builder.</h1>
           <p className="hero-bio">
             Based in Laramie, Wyoming. I build systems that actually do things: AI assistants,
@@ -205,9 +278,9 @@ export default function App() {
   <div className="projects-list">
     {[
       {
-        num: '01', name: 'KRONOS',
-        desc: 'A fully local, voice-first personal assistant. Delivers morning briefings, responds to Telegram commands, and fires pre-event alerts, running 24/7 on a Raspberry Pi.',
-        tags: ['Node.js', 'Anthropic SDK', 'Telegram Bot API', 'CalDAV', 'Raspberry Pi', 'launchd'],
+        num: '01', name: 'KRONOS', live: true,
+        desc: 'A fully local, voice-first personal assistant. Delivers morning briefings, responds to Telegram commands, and fires pre-event alerts. Runs as always-on background services on my own machine.',
+        tags: ['Node.js', 'Anthropic SDK', 'Telegram Bot API', 'CalDAV', 'systemd', 'Linux'],
         link: 'https://github.com/BagoBones-tldr/KRONOS',
       },
       {
@@ -226,7 +299,7 @@ export default function App() {
       <div className="project-card reveal" key={p.num} style={{ transitionDelay: `${i * 70}ms` }}>
         <div>
           <div className="project-num">{p.num}</div>
-          <div className="project-name">{p.name}</div>
+          <div className="project-name">{p.name}{p.live && <StatusBadge />}</div>
           <div className="project-desc">{p.desc}</div>
           <div className="project-tags">
             {p.tags.map(t => <span className="project-tag" key={t}>{t}</span>)}
