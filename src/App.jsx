@@ -185,7 +185,7 @@ function HomeLabDiagram() {
   )
 }
 
-const navItems = ['about', 'skills', 'projects', 'experience', 'contact']
+const navItems = ['about', 'skills', 'projects', 'now', 'contact']
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -283,7 +283,7 @@ export default function App() {
           </p>
           <div className="hero-cta">
             <a href="#projects" className="btn btn-primary">View projects</a>
-            <a href="#experience" className="btn btn-ghost">Experience</a>
+            <a href="#now" className="btn btn-ghost">What I'm up to</a>
           </div>
         </div>
         <div className="hero-img-wrap">
@@ -401,20 +401,21 @@ export default function App() {
 </section>
 
       {/* EXPERIENCE */}
-      <section id="experience">
-        <div className="section-label">experience</div>
-        <div className="section-title reveal">Where I've worked</div>
-        <div className="exp-list">
+      <section id="now">
+        <div className="section-label">now</div>
+        <div className="section-title reveal">What I'm focused on</div>
+        <div className="now-list">
           {[
-            { date: '4 mos', role: 'Crew Member', company: "McDonald's · Wayne, NE" },
-            { date: '6 mos', role: 'Cook / Rover', company: "Chili's · Laramie, WY" },
-            { date: '1 yr', role: 'Food Runner / Busser', company: 'Trackside Bar & Grill · Waverly, NE' },
-          ].map((e, i) => (
-            <div className="exp-item reveal" key={e.role + e.company} style={{ transitionDelay: `${i * 70}ms` }}>
-              <div className="exp-date">{e.date}</div>
+            { title: 'Studying toward the CCNA', note: 'networking fundamentals · routing & switching' },
+            { title: 'Building a self-hosted home lab', note: 'VLAN-segmented, built incrementally' },
+            { title: 'Running KRONOS in production', note: '24/7 AI assistant on my own Linux box' },
+            { title: 'Shipping and learning daily', note: 'self-taught from zero in early 2026' },
+          ].map((n, i) => (
+            <div className="now-item reveal" key={n.title} style={{ transitionDelay: `${i * 70}ms` }}>
+              <span className="now-marker">▸</span>
               <div>
-                <div className="exp-role">{e.role}</div>
-                <div className="exp-company">{e.company}</div>
+                <div className="now-title">{n.title}</div>
+                <div className="now-note">{n.note}</div>
               </div>
             </div>
           ))}

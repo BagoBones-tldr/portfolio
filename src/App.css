@@ -105,12 +105,12 @@ h1 .dim { color: var(--muted); }
 .project-card:hover .project-arrow { color: var(--accent2); transform: translate(3px,-3px); }
 
 /* EXPERIENCE */
-.exp-list { display: flex; flex-direction: column; }
-.exp-item { display: grid; grid-template-columns: 6rem 1fr; gap: 1.5rem; padding: 1.75rem 0; border-bottom: 0.5px solid var(--border2); align-items: center; }
-.exp-item:first-child { border-top: 0.5px solid var(--border2); }
-.exp-date { justify-self: start; font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent2); background: var(--bg3); border: 0.5px solid var(--border2); border-radius: 4px; padding: 0.3rem 0.55rem; letter-spacing: 0.04em; line-height: 1; white-space: nowrap; }
-.exp-role { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 0.25rem; color: var(--text); }
-.exp-company { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent2); }
+.now-list { display: flex; flex-direction: column; gap: 1rem; }
+.now-item { display: grid; grid-template-columns: auto 1fr; gap: 0.9rem; align-items: start; background: linear-gradient(165deg, var(--bg2), var(--bg)); border: 0.5px solid var(--border2); border-radius: 8px; padding: 1.1rem 1.25rem; transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, opacity 0.7s cubic-bezier(.2,.6,.2,1); }
+.now-item:hover { transform: translateY(-3px); border-color: var(--border); box-shadow: 0 14px 30px -16px rgba(0,0,0,0.7); }
+.now-marker { color: var(--accent); font-size: 1rem; line-height: 1.5; }
+.now-title { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; color: var(--text); margin-bottom: 0.25rem; }
+.now-note { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
 
 /* CONTACT */
 .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
@@ -177,9 +177,6 @@ footer span { color: var(--accent); }
   /* SKILLS */
   .skills-grid { grid-template-columns: 1fr; }
 
-  /* EXPERIENCE */
-  .exp-item { grid-template-columns: 1fr; gap: 0.75rem; align-items: start; }
-  .exp-date { margin-bottom: 0.1rem; }
 
   /* CONTACT */
   .form-row { grid-template-columns: 1fr; }
@@ -267,11 +264,6 @@ footer span { color: var(--accent); }
 /* Button polish */
 .btn-primary { box-shadow: 0 10px 24px -10px rgba(200,98,42,0.6); }
 .btn-primary:hover { color: var(--bg); transform: translateY(-2px); box-shadow: 0 14px 30px -10px rgba(200,98,42,0.7); }
-
-/* Experience row hover */
-.exp-item { border-radius: 8px; transition: background 0.25s ease, padding 0.25s ease,
-            opacity 0.7s cubic-bezier(.2,.6,.2,1), transform 0.7s cubic-bezier(.2,.6,.2,1); }
-.exp-item:hover { background: linear-gradient(90deg, rgba(200,98,42,0.05), transparent); }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
