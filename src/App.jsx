@@ -19,6 +19,14 @@ function MailIcon() {
   )
 }
 
+function BlueskyIcon() {
+  return (
+    <svg viewBox="0 0 16 17" width="20" height="20" fill="currentColor" aria-hidden="true">
+      <path d="M7.75 7.735c-.693-1.348-2.58-3.86-4.334-5.097-1.68-1.187-2.32-.981-2.74-.79C.188 2.065.1 2.812.1 3.251s.241 3.602.398 4.13c.52 1.744 2.367 2.333 4.07 2.145-2.495.37-4.71 1.278-1.805 4.512 3.196 3.309 4.38-.71 4.987-2.746.608 2.036 1.307 5.91 4.93 2.746 2.72-2.746.747-4.143-1.747-4.512 1.702.189 3.55-.4 4.07-2.145.156-.528.397-3.691.397-4.13s-.088-1.186-.575-1.406c-.42-.19-1.06-.395-2.741.79-1.755 1.24-3.64 3.752-4.334 5.099" />
+    </svg>
+  )
+}
+
 function DiscordIcon() {
   return (
     <svg viewBox="0 0 20 19" width="21" height="21" fill="currentColor" aria-hidden="true">
@@ -32,6 +40,7 @@ function DiscordIcon() {
 const socials = [
   { label: 'GitHub', href: 'https://github.com/BagoBones-tldr', Icon: GitHubIcon, external: true },
   { label: 'Discord', href: 'https://discord.com/users/676961601232044063', Icon: DiscordIcon, external: true },
+  { label: 'Bluesky', href: 'https://bsky.app/profile/chromerducky.bsky.social', Icon: BlueskyIcon, external: true },
   { label: 'Email', href: 'mailto:neutron-ton618@protonmail.com', Icon: MailIcon, external: false },
 ]
 
@@ -43,6 +52,7 @@ function SocialLinks({ className = '' }) {
           key={label}
           href={href}
           aria-label={label}
+          className={`social-${label.toLowerCase()}`}
           {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
         >
           <Icon />
@@ -281,7 +291,7 @@ export default function App() {
         num: '01', name: 'KRONOS', live: true,
         desc: 'A fully local, voice-first personal assistant. Delivers morning briefings, responds to Telegram commands, and fires pre-event alerts. Runs as always-on background services on my own machine.',
         tags: ['Node.js', 'Anthropic SDK', 'Telegram Bot API', 'CalDAV', 'systemd', 'Linux'],
-        link: 'https://github.com/BagoBones-tldr/KRONOS',
+        link: 'https://github.com/BagoBones-tldr/Calender_Bot',
       },
       {
         num: '02', name: 'Home Lab',
