@@ -366,7 +366,7 @@ export default function App() {
         num: '01', name: 'KRONOS', live: true,
         desc: 'A fully local, voice-first personal assistant. Delivers morning briefings, responds to Telegram commands, and fires pre-event alerts. Runs as always-on background services on my own machine.',
         tags: ['Node.js', 'Anthropic SDK', 'Telegram Bot API', 'CalDAV', 'systemd', 'Linux'],
-        link: 'https://github.com/BagoBones-tldr/Calender_Bot',
+        link: 'https://github.com/BagoBones-tldr/KRONOS',
       },
       {
         num: '02', name: 'Home Lab', diagram: true,
